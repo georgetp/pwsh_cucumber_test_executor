@@ -1,5 +1,9 @@
 Using module .\classes\Feature.psd1
 
+if ($Env:Tools_PATH -ne $nul) {
+  Set-Location $Env:TOOLS_PATH
+}
+
 . .\common_functions.ps1
 . .\forms\form_configure.ps1
 
