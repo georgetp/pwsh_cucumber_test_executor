@@ -7,10 +7,10 @@
 - Git installed  ( https://git-scm.com/downloads )
 
 ## Make it work
- - Choose the folder you want to clone this repo
- - git clone https://github.com/georgetp/pwsh_cucumber_test_executor.git
  - Start PowerShell
- - cd Tools
+ - Choose the folder you want to clone this repository
+ - git clone https://github.com/georgetp/pwsh_cucumber_test_executor.git
+ - cd pwsh_cucumber_test_executor\Tools
  - .\form_runTestCase.ps1
 
 ## Run from any folder
@@ -19,5 +19,5 @@
  - Add the "TOOLS_PATH" variable to the "Path".
  - Restart system for the changes to be applied
  - Start PowerShell
- - .\form_runTestCase.ps1
+ - form_runTestCase.ps1
 
