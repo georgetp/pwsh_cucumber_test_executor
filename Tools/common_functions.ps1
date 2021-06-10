@@ -48,7 +48,7 @@ function RunScipt ([String] $script, [String] $console, [String[]] $params) {
         Start-Process -FilePath "$console" -ArgumentList "/c $script $parameters"
     } else {
       foreach ($p in $params) { $parameters += "`'$p`' " }
-      Start-Process -FilePath "$console" -ArgumentList "-NoExit $script $parameters" -WindowStyle maximized
+      Start-Process -FilePath "$console" -ArgumentList "-NoProfile $script $parameters" -WindowStyle maximized
     }
 }
 
