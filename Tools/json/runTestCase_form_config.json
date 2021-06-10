@@ -1,0 +1,14 @@
+{
+    "suite":  "SuiteName1",
+    "keep_console_output":  "no",
+    "folder":  "*** All Folders ***",
+    "keep_results":  "no",
+    "excl_tags":  "",
+    "scenario":  "8 - Scenario Outline: Verify date lower than today (scenario outline)",
+    "split_run":  "no",
+    "browser":  "chrome",
+    "feature_file":  "feature_tree_folder\\subfolder\\featureSub.feature",
+    "run_mode":  "mode1",
+    "keep_test_data":  "no",
+    "inc_tags":  ""
+}

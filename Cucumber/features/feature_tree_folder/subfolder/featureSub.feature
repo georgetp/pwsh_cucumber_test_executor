@@ -1,6 +1,6 @@
 @feature_sub
 @spec_three @tag_three
-Feature: This is the second feature
+Feature: This is the 3rd sub feature
 
   @scenario_outline
   # @tag

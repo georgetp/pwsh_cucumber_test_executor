@@ -1,6 +1,6 @@
 Using module .\classes\Feature.psd1
 
-if ($Env:Tools_PATH -ne $nul) {
+if ($Env:Tools_PATH -ne $null) {
   Set-Location $Env:TOOLS_PATH
 }
 
@@ -916,19 +916,22 @@ re-select the feature file." }
 # Main program starts here
 addRequiredAssembly
 
-if ( -Not (Test-Path -Path "$HOME\cucumber_paths_config.json") ) {
+$globalVars = readGlobals
+
+if ( -Not (Test-Path -Path "$HOME\$($globalVars.configFileName)") ) {
   configure_form
 }
+
 $pathsOBJ = readConfiguration
 
 # Set runTestCase form paths
-$global:runTestCase_config = "$HOME\runTestCase_form_config.json"
-$global:featureFilesFolder = "$($pathsOBJ.cucumber_code_path)\features"
+$global:runTestCase_config = $globalVars.runFormSelectionsFile
+$global:featureFilesFolder = "$($pathsOBJ.feature_files_path)"
 
 if ((Test-Path -Path "$global:featureFilesFolder") -AND `
     (Test-Path -Path $pathsOBJ.scriptsPath )) {
   runTestCase_form($pathsOBJ) | Out-Null
 } else {
   write-host "!! There was an error in your folder configuration !!"
-  write-host "Delete $HOME\cucumber_paths_config.json and rerun so as to configure paths again."
+  write-host "Delete $HOME\$($globalVars.configFileName) and rerun so as to configure paths again."
 }

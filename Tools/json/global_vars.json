@@ -1,0 +1,4 @@
+{
+    "configFileName":  "test_executor_paths_config.json",
+    "runFormSelectionsFile":  ".\\json\\runTestCase_form_config.json"
+}

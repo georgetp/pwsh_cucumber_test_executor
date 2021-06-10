@@ -1,6 +1,19 @@
+function readGlobals() {
+  $global_vars_file = ".\json\global_vars.json"
+
+  if ( Test-Path -Path "$global_vars_file" ) {
+    $config = Get-Content "$global_vars_file" | ConvertFrom-Json
+  } else {
+    write-error "Unable to find $global_vars_file"
+  }
+
+  return $config
+}
+
 function readConfiguration() {
-  $config_file = "$HOME\cucumber_paths_config.json"
-  $config = @{ scriptsPath=""; cucumber_code_path=""; test_results_folder=""; home_path="" }
+  $global_vars = readGlobals
+  $config_file = "$HOME\$($global_vars.configFileName)"
+  $config = @{scriptsPath=""; feature_files_path=""; test_execution_tool_path=""; test_results_folder=""; home_path=""}
 
   if ( Test-Path -Path "$config_file" ) {
     $config = Get-Content "$config_file" | ConvertFrom-Json

@@ -1,19 +1,22 @@
 . .\common_functions.ps1
 
 function SaveFolderConfiguration($configOBJ){
-   $configOBJ.scriptsPath             = $textBoxScripts.Text
-   $configOBJ.cucumber_code_path      = $textBoxCode.Text
-   $configOBJ.test_results_folder     = $textBoxTestResults.Text
-   $configOBJ.home_path               = $textBoxHome.Text
+   $globalVars = readGlobals
+   $configOBJ.scriptsPath              = $textBoxScripts.Text
+   $configOBJ.feature_files_path       = $textBoxCode.Text
+   $configOBJ.test_results_folder      = $textBoxTestResults.Text
+   $configOBJ.test_execution_tool_path = $textTestExecutionToolPath.Text
+   $configOBJ.home_path                = $textBoxHome.Text
 
-   $($configOBJ | ConvertTo-Json) | Out-File -FilePath "$HOME\cucumber_paths_config.json" -Encoding ASCII
+   $($configOBJ | ConvertTo-Json) | Out-File -FilePath "$HOME\$($globalVars.configFileName)" -Encoding ASCII
 }
 
 function applyFolderConfiguration($configOBJ) {
-  $textBoxScripts.Text         = $configOBJ.scriptsPath
-  $textBoxCode.Text            = $configOBJ.cucumber_code_path
-  $textBoxTestResults.Text     = $configOBJ.test_results_folder
-  $textBoxHome.Text            = $configOBJ.home_path
+  $textBoxScripts.Text            = $configOBJ.scriptsPath
+  $textBoxCode.Text               = $configOBJ.feature_files_path
+  $textBoxTestResults.Text        = $configOBJ.test_results_folder
+  $textTestExecutionToolPath.Text = $configOBJ.test_execution_tool_path
+  $textBoxHome.Text               = $configOBJ.home_path
 }
 
 function folderSelection() {
@@ -54,7 +57,7 @@ function configure_form() {
   # Add label
   $label_position_y += 60
   $LabelCode = New-Object System.Windows.Forms.Label
-  $LabelCode.Text = "Code Path (Cucumber folder) :"
+  $LabelCode.Text = "Feature files folder path :"
   $LabelCode.Location  = New-Object System.Drawing.Point(10,$label_position_y)
   $LabelCode.AutoSize = $true
   $LabelCode.Font = [System.Drawing.Font]::new('Segoe UI', 10)
@@ -69,6 +72,25 @@ function configure_form() {
     }
   )
   $configure_form.Controls.Add($textBoxCode)
+
+  # Add label
+  $label_position_y += 60
+  $LabelTestExecutionToolPath = New-Object System.Windows.Forms.Label
+  $LabelTestExecutionToolPath.Text = "Test Execution Tool Folder :"
+  $LabelTestExecutionToolPath.Location  = New-Object System.Drawing.Point(10,$label_position_y)
+  $LabelTestExecutionToolPath.AutoSize = $true
+  $LabelTestExecutionToolPath.Font = [System.Drawing.Font]::new('Segoe UI', 10)
+  $configure_form.Controls.Add($LabelTestExecutionToolPath)
+
+  $textTestExecutionToolPath = New-Object System.Windows.Forms.TextBox
+  $textTestExecutionToolPath.Location = New-Object System.Drawing.Point(10,$($label_position_y + 30))
+  $textTestExecutionToolPath.Size = New-Object System.Drawing.Size(460,20)
+  $textTestExecutionToolPath.Add_Click(
+    {
+      $textTestExecutionToolPath.Text = folderSelection
+    }
+  )
+  $configure_form.Controls.Add($textTestExecutionToolPath)
 
   # Add label
   $label_position_y += 60

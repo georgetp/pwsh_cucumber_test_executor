@@ -86,21 +86,29 @@ function executeCommand($featureFile) {
   }
 
   $specs   = "\features\${folder}${featureFile}${scenario}"
-  $command = "--specs=${specs}${inc_tags}${excl_tags}${browser}${consoleOut}"
+
+  # !! You need to complete/replace with the actual command that will eventually
+  # !! ran in the line bellow.
+  $command = "--specs=${specs}${inc_tags}${excl_tags}${browser}${suite}${consoleOut}"
 
   actionAnnouncement -cmd $command -outFile $output_file -cnslLog $consoleOutFile
 
+  # !! Un-comment the following line in order to run the command
   # Invoke-Expression $command
 
   if ( "$keep_results" -eq "yes" ) {
     write-host "`r`nSaving results .." -ForegroundColor DarkGray
     write-host "-----------------" -ForegroundColor DarkGray
+    # !! Replace the '.\tmp\' with the folder that you execution tool stores
+    # !! the results. Then un-commament the following line.
     # 7z a "${output_file}" .\tmp\*
   }
 }
 
+Set-Location $paths.test_execution_tool_path
+
 if ( "$split_run" -eq "yes") {
-  $featureFilesArray = Get-ChildItem -Path "$($paths.cucumber_code_path)\features\${folder}" -Include "*.feature" -Recurse -Name
+  $featureFilesArray = Get-ChildItem -Path "$($paths.feature_files_path)\${folder}" -Include "*.feature" -Recurse -Name
   Foreach ($file in $featureFilesArray){
     executeCommand -featureFile $file
   }
