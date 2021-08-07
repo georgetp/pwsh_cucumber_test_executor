@@ -10,6 +10,7 @@ Feel free to keep it if you like and make the changes at the lines marked with "
 - Windows OS
 - PowerShell v5.1 or above
 - 7zip installed ( https://www.7-zip.org/download.html )
+- Add 7zip folder to system PATH
 - Git installed  ( https://git-scm.com/downloads )
 
 ## Make it work
@@ -43,5 +44,11 @@ To make it work you can initially set the value to <checkOutFolder>\pwsh_cucumbe
 - Restart system for the changes to be applied
 - Start PowerShell
 - form_runTestCase.ps1
+
+##  Screenshots
+![alt text](https://github.com/georgetp/pwsh_test_executor_for_feature_files/blob/master/Screenshots/main_window.JPG?raw=true)
+
+![alt text](https://github.com/georgetp/pwsh_test_executor_for_feature_files/blob/master/Screenshots/Configure_Folders_Screen.JPG?raw=true)
+
 
 # Hope you like it and ENJOY .. :)

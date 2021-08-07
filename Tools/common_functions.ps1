@@ -1,3 +1,4 @@
+<# Downloaded from : https://github.com/georgetp/pwsh_test_executor_for_feature_files.git #>
 function readGlobals() {
   $global_vars_file = ".\json\global_vars.json"
 
